@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -227,16 +228,16 @@ public class Tiendita extends javax.swing.JFrame {
         jTree2 = new javax.swing.JTree();
         listaPersonas = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePersonas = new javax.swing.JTable();
         jLabel85 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        elim_personas = new javax.swing.JButton();
         jLabel88 = new javax.swing.JLabel();
         listaObjetos = new javax.swing.JPanel();
         jLabel86 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableObjetos = new javax.swing.JTable();
         jLabel87 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        elimObjeto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -1124,8 +1125,6 @@ public class Tiendita extends javax.swing.JFrame {
 
         jLabel84.setText("Seleccione en objeto que desea modificar: ");
 
-        cb_objetoMod_modObjetos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         modificarMod_modObjetos.setText("MODIFICAR");
         modificarMod_modObjetos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1166,7 +1165,6 @@ public class Tiendita extends javax.swing.JFrame {
                                 .addGap(60, 60, 60)
                                 .addGroup(modificarObjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel80)
-                                    .addComponent(personaIngreso_modObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(modificarObjetoLayout.createSequentialGroup()
                                         .addGroup(modificarObjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel72)
@@ -1182,7 +1180,8 @@ public class Tiendita extends javax.swing.JFrame {
                                         .addGap(49, 49, 49)
                                         .addGroup(modificarObjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel77)
-                                            .addComponent(ftf_tamaño_modObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(ftf_tamaño_modObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(personaIngreso_modObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(modificarObjetoLayout.createSequentialGroup()
                                 .addGroup(modificarObjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(modificarObjetoLayout.createSequentialGroup()
@@ -1393,7 +1392,7 @@ public class Tiendita extends javax.swing.JFrame {
 
         jTabbedPane10.addTab("Jerarquía de Objetos", jerarquiaObjetos);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1416,15 +1415,15 @@ public class Tiendita extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane11.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane11.setViewportView(tablePersonas);
+        if (tablePersonas.getColumnModel().getColumnCount() > 0) {
+            tablePersonas.getColumnModel().getColumn(0).setResizable(false);
+            tablePersonas.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel85.setText("Lista Personas");
 
-        jButton6.setText("ELIMINAR");
+        elim_personas.setText("ELIMINAR");
 
         jLabel88.setText("Seleccione la persona que desea eliminar, luego haga click en ELIMINAR: ");
 
@@ -1434,7 +1433,7 @@ public class Tiendita extends javax.swing.JFrame {
             listaPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listaPersonasLayout.createSequentialGroup()
                 .addGap(344, 344, 344)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(elim_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(listaPersonasLayout.createSequentialGroup()
                 .addGroup(listaPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1458,15 +1457,15 @@ public class Tiendita extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel88)
                 .addGap(39, 39, 39)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(elim_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTabbedPane10.addTab("Lista Personas", listaPersonas);
 
-        jLabel86.setText("Lista Personas");
+        jLabel86.setText("Lista Objetos");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableObjetos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1482,16 +1481,16 @@ public class Tiendita extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane12.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane12.setViewportView(tableObjetos);
+        if (tableObjetos.getColumnModel().getColumnCount() > 0) {
+            tableObjetos.getColumnModel().getColumn(0).setResizable(false);
+            tableObjetos.getColumnModel().getColumn(1).setResizable(false);
+            tableObjetos.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel87.setText("Seleccione el objeto que desea eliminar, luego haga click en ELIMINAR: ");
 
-        jButton5.setText("ELIMINAR");
+        elimObjeto.setText("ELIMINAR");
 
         javax.swing.GroupLayout listaObjetosLayout = new javax.swing.GroupLayout(listaObjetos);
         listaObjetos.setLayout(listaObjetosLayout);
@@ -1511,7 +1510,7 @@ public class Tiendita extends javax.swing.JFrame {
                 .addContainerGap(304, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaObjetosLayout.createSequentialGroup()
                 .addGap(348, 348, 348)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(elimObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         listaObjetosLayout.setVerticalGroup(
@@ -1524,7 +1523,7 @@ public class Tiendita extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel87)
                 .addGap(35, 35, 35)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(elimObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(174, Short.MAX_VALUE))
         );
 
@@ -1576,6 +1575,7 @@ public class Tiendita extends javax.swing.JFrame {
 
     private void agregarPersona_crearPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarPersona_crearPersonaMouseClicked
         Persona persona;
+        String rol = "Gerente";
         if("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
             persona = new Gerente();
             ((Gerente)(persona)).setUsuario(tf_usuario_crearPersona.getText());
@@ -1586,6 +1586,7 @@ public class Tiendita extends javax.swing.JFrame {
             ((General)(persona)).setOcupacion(ocupacion_crearPersona.getText());
             ((General)(persona)).setHorario(cb_horario_crearPersona.getSelectedItem().toString());
             ((General)(persona)).setSemanas(Integer.parseInt(tiempo_crearPersona.getValue().toString()));
+            rol = "Persona General";
         }
         persona.setAltura(Integer.parseInt(altura_crearPersona.getText()));
         if(soltero_crearPersona.isSelected()){
@@ -1604,10 +1605,16 @@ public class Tiendita extends javax.swing.JFrame {
         }
         personas.add(persona);
         JOptionPane.showMessageDialog(this, "Persona Agregada Exitosamente", "Exito", 1);
-        DefaultComboBoxModel modelPersonas = (DefaultComboBoxModel)cb_tipoPersona_modPersona.getModel();
+        DefaultComboBoxModel modelPersonas = (DefaultComboBoxModel)cb_select_modPersona.getModel();
         modelPersonas.addElement(persona);
         cb_select_modPersona.setModel(modelPersonas);
         cb_personaIngreso_crearObjetos.setModel(modelPersonas);
+        personaIngreso_modObjetos.setModel(modelPersonas);
+        
+        DefaultTableModel listObjeto = (DefaultTableModel)tablePersonas.getModel();
+        Object [] row = {persona.getNombre(),rol};
+        listObjeto.addRow(row);
+        tablePersonas.setModel(listObjeto);
 //        if("Zapatos".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
 //            
 //        }else if("Ropa".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
@@ -1664,6 +1671,10 @@ public class Tiendita extends javax.swing.JFrame {
         objeto.setMarca(tf_marca_crearObjetos.getText());
         objeto.setPersona((Persona)cb_personaIngreso_crearObjetos.getSelectedItem());
         objeto.setTamaño(Integer.parseInt(ftf_tamaño_crearObjetos.getText()));
+        
+        DefaultComboBoxModel modelObjeto = (DefaultComboBoxModel)cb_objetoMod_modObjetos.getModel();
+        modelObjeto.addElement(objeto);
+        cb_objetoMod_modObjetos.setModel(modelObjeto);
     }//GEN-LAST:event_button_agregarObjetoMouseClicked
 
     private void botonColor_crearObjetosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonColor_crearObjetosMouseClicked
@@ -1766,6 +1777,8 @@ ArrayList<Objeto> objetos = new ArrayList();
     private javax.swing.JTextArea descripcionSuela_modObjetos;
     private javax.swing.JTextArea descripcion_hogar_crearObjetos;
     private javax.swing.JTextArea descripcion_modObjetos;
+    private javax.swing.JButton elimObjeto;
+    private javax.swing.JButton elim_personas;
     private javax.swing.JRadioButton fem_agregarPersona;
     private javax.swing.JRadioButton fem_modPersona;
     private javax.swing.JFormattedTextField ftf_altura_modPersona;
@@ -1784,8 +1797,6 @@ ArrayList<Objeto> objetos = new ArrayList();
     private javax.swing.JFormattedTextField id_crearPersona;
     private javax.swing.JTextArea instrucciones_hogar_crearObjetos;
     private javax.swing.JTextArea instrucciones_modObjeto;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1889,8 +1900,6 @@ ArrayList<Objeto> objetos = new ArrayList();
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane10;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jTree2;
     private javax.swing.JPanel jerarquiaObjetos;
@@ -1917,6 +1926,8 @@ ArrayList<Objeto> objetos = new ArrayList();
     private javax.swing.JSpinner spin_garantia_crearObjetos;
     private javax.swing.JTextArea ta_descripcionSuela_crearObjetos;
     private javax.swing.JTextArea ta_descripcion_crearObjetos;
+    private javax.swing.JTable tableObjetos;
+    private javax.swing.JTable tablePersonas;
     private javax.swing.JTextField tf_contra_crearPersona;
     private javax.swing.JTextField tf_contra_modPersona;
     private javax.swing.JTextField tf_marca_crearObjetos;
