@@ -4,13 +4,13 @@ public class General extends Persona{
     private String ocupacion;
     private String horario;
     private int semanas;
-    private double sueldo;
+    private int sueldo;
 
     public General() {
         super();
     }
 
-    public General(String ocupacion, String horario, int semanas, double sueldo) {
+    public General(String ocupacion, String horario, int semanas, int sueldo) {
         super();
         this.ocupacion = ocupacion;
         this.horario = horario;
@@ -42,11 +42,11 @@ public class General extends Persona{
         this.semanas = semanas;
     }
 
-    public double getSueldo() {
+    public int getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(double sueldo) {
+    public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
 

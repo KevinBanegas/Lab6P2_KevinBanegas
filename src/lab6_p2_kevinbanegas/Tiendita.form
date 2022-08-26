@@ -530,7 +530,7 @@
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jSpinner1" min="-2" pref="39" max="-2" attributes="0"/>
+                                                      <Component id="comodidad_crearObjeto" min="-2" pref="39" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
@@ -614,7 +614,6 @@
                                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cb_personaIngreso_crearObjetos" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
@@ -640,6 +639,7 @@
                                                   <Component id="ftf_tamaño_crearObjetos" min="-2" pref="105" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <Component id="cb_personaIngreso_crearObjetos" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -721,7 +721,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="comodidad_crearObjeto" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -821,6 +821,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonColor_crearObjetos">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonColor_crearObjetosMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cb_tipoObjetos">
               <Properties>
@@ -1016,9 +1019,9 @@
                 <Property name="text" type="java.lang.String" value="XL"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner1">
+            <Component class="javax.swing.JSpinner" name="comodidad_crearObjeto">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1)); "/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comodidad_crearObjeto.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1)); "/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -1278,6 +1281,9 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_select_modPersonaActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

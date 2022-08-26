@@ -5,8 +5,10 @@
  */
 package lab6_p2_kevinbanegas;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -126,7 +128,7 @@ public class Tiendita extends javax.swing.JFrame {
         l_crearObjetos = new javax.swing.JRadioButton();
         m_crearObjetos = new javax.swing.JRadioButton();
         xl_crearObjetos = new javax.swing.JRadioButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        comodidad_crearObjeto = new javax.swing.JSpinner();
         modificarPersona = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -520,6 +522,12 @@ public class Tiendita extends javax.swing.JFrame {
 
         jLabel20.setText("Hogar");
 
+        botonColor_crearObjetos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonColor_crearObjetosMouseClicked(evt);
+            }
+        });
+
         cb_tipoObjetos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Zapatos", "Ropa", "Objetos de Hogar" }));
 
         ta_descripcion_crearObjetos.setColumns(20);
@@ -584,7 +592,7 @@ public class Tiendita extends javax.swing.JFrame {
         buttonGroup1.add(xl_crearObjetos);
         xl_crearObjetos.setText("XL");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        comodidad_crearObjeto.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
         javax.swing.GroupLayout crearObjetosLayout = new javax.swing.GroupLayout(crearObjetos);
         crearObjetos.setLayout(crearObjetosLayout);
@@ -607,7 +615,7 @@ public class Tiendita extends javax.swing.JFrame {
                                             .addGroup(crearObjetosLayout.createSequentialGroup()
                                                 .addComponent(jLabel23)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(comodidad_crearObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(157, 157, 157)))
                                         .addGroup(crearObjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -669,7 +677,6 @@ public class Tiendita extends javax.swing.JFrame {
                                 .addGap(60, 60, 60)
                                 .addGroup(crearObjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel17)
-                                    .addComponent(cb_personaIngreso_crearObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(crearObjetosLayout.createSequentialGroup()
                                         .addGroup(crearObjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel12)
@@ -688,7 +695,8 @@ public class Tiendita extends javax.swing.JFrame {
                                         .addGap(49, 49, 49)
                                         .addGroup(crearObjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15)
-                                            .addComponent(ftf_tamaño_crearObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(ftf_tamaño_crearObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(cb_personaIngreso_crearObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 196, Short.MAX_VALUE))
                     .addGroup(crearObjetosLayout.createSequentialGroup()
                         .addContainerGap()
@@ -753,7 +761,7 @@ public class Tiendita extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(crearObjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel23)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(comodidad_crearObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(crearObjetosLayout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addGroup(crearObjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -786,6 +794,12 @@ public class Tiendita extends javax.swing.JFrame {
         jLabel31.setText("Modificar Persona");
 
         jLabel32.setText("Seleccione a la persona a modificar: ");
+
+        cb_select_modPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_select_modPersonaActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(casado_modPersona);
         casado_modPersona.setText("Casado");
@@ -1590,7 +1604,10 @@ public class Tiendita extends javax.swing.JFrame {
         }
         personas.add(persona);
         JOptionPane.showMessageDialog(this, "Persona Agregada Exitosamente", "Exito", 1);
-        
+        DefaultComboBoxModel modelPersonas = (DefaultComboBoxModel)cb_tipoPersona_modPersona.getModel();
+        modelPersonas.addElement(persona);
+        cb_select_modPersona.setModel(modelPersonas);
+        cb_personaIngreso_crearObjetos.setModel(modelPersonas);
 //        if("Zapatos".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
 //            
 //        }else if("Ropa".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
@@ -1613,27 +1630,72 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_tipo_modObjetosActionPerformed
 
     private void button_agregarObjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_agregarObjetoMouseClicked
-        Objeto objeto = new Objeto();
+        Objeto objeto;
         if("Zapatos".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
             objeto = new Zapato();
+            ((Zapato)(objeto)).setTalla(ftf_talla_crearObjetos.getText());
+            ((Zapato)(objeto)).setDescSuela(ta_descripcionSuela_crearObjetos.getText());
+            ((Zapato)(objeto)).setComodidad(Integer.parseInt(comodidad_crearObjeto.getValue().toString()));
+            
+        }else if("Ropa".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
+            objeto = new Ropa();
             if(s_crearObjetos.isSelected()){
-                ((Zapato)(objeto)).setTalla(s_crearObjetos.getText());
+                ((Ropa)(objeto)).setTalla(s_crearObjetos.getText());
             }else if(m_crearObjetos.isSelected()){
-                ((Zapato)(objeto)).setTalla(m_crearObjetos.getText());
+                ((Ropa)(objeto)).setTalla(m_crearObjetos.getText());
             }else if(l_crearObjetos.isSelected()){
-                ((Zapato)(objeto)).setTalla(l_crearObjetos.getText());
+                ((Ropa)(objeto)).setTalla(l_crearObjetos.getText());
             }else{
-                ((Zapato)(objeto)).setTalla(xl_crearObjetos.getText());
+                ((Ropa)(objeto)).setTalla(xl_crearObjetos.getText());
             }
             
-            ((Zapato)(objeto)).setDescSuela(ta_descripcionSuela_crearObjetos.getText());
-            ((Zapato)(objeto)).setComodidad();
-        }else if("Ropa".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
+            ((Ropa)(objeto)).setPais(tf_paisElab_crearObjetos.getText());
+            ((Ropa)(objeto)).setTela(tf_tipoTela_crearObjetos.getText());
+        }else{
+            objeto = new ObjetoHogar();
+            ((ObjetoHogar)(objeto)).setDesc(descripcion_hogar_crearObjetos.getText());
+            ((ObjetoHogar)(objeto)).setInstr(instrucciones_hogar_crearObjetos.getText());
+            ((ObjetoHogar)(objeto)).setGarantia(Integer.parseInt(spin_garantia_crearObjetos.getValue().toString()));
+        }
+        
+        objeto.setCalidad(ftf_calidad_crearObjetos.getText());
+        objeto.setColor(botonColor_crearObjetos.getBackground());
+        objeto.setDescripcion(ta_descripcion_crearObjetos.getText());
+        objeto.setMarca(tf_marca_crearObjetos.getText());
+        objeto.setPersona((Persona)cb_personaIngreso_crearObjetos.getSelectedItem());
+        objeto.setTamaño(Integer.parseInt(ftf_tamaño_crearObjetos.getText()));
+    }//GEN-LAST:event_button_agregarObjetoMouseClicked
+
+    private void botonColor_crearObjetosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonColor_crearObjetosMouseClicked
+        botonColor_crearObjetos.setBackground(JColorChooser.showDialog(this, "Elija Color:", Color.yellow));
+    }//GEN-LAST:event_botonColor_crearObjetosMouseClicked
+
+    private void cb_select_modPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_select_modPersonaActionPerformed
+        if(cb_select_modPersona.getSelectedItem() instanceof Gerente){
+            tf_usuario_modPersona.setText(((Gerente)(cb_select_modPersona.getSelectedItem())).getUsuario());
+            tf_contra_modPersona.setText(((Gerente)(cb_select_modPersona.getSelectedItem())).getContra());
+            String temp = (((Gerente)(cb_select_modPersona.getSelectedItem())).getCargo());
+            if ("Gerente de Planta".equals(temp)){
+                cb_cargo_modPersona.setSelectedIndex(0);
+            }else{
+                cb_cargo_modPersona.setSelectedIndex(1);
+            }
             
         }else{
-            
+            tf_ocupacion_modPersona.setText(((General)(cb_select_modPersona.getSelectedItem())).getOcupacion());
+            tiempoTrabajado__modPersona.setValue(((General)(cb_select_modPersona.getSelectedItem())).getSemanas());
+            ftf_sueldo_modPersona.setText(""+(((General)(cb_select_modPersona.getSelectedItem())).getSueldo()));
         }
-    }//GEN-LAST:event_button_agregarObjetoMouseClicked
+       ftf_id_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getId()));
+       tf_nombre_modPersona.setText(((Persona)(cb_select_modPersona.getSelectedItem())).getNombre());
+       ftf_edad_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getEdad()));
+       ftf_altura_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getAltura()));
+       tft_peso_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getPeso()));
+       soltero_modPersona.setSelected(true);
+       masc_modPersona.setSelected(true);
+       
+               
+    }//GEN-LAST:event_cb_select_modPersonaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1696,6 +1758,7 @@ ArrayList<Objeto> objetos = new ArrayList();
     private javax.swing.JComboBox<String> cb_tipoPersona_modPersona;
     private javax.swing.JComboBox<String> cb_tipo_modObjetos;
     private javax.swing.JButton color_modObjeto;
+    private javax.swing.JSpinner comodidad_crearObjeto;
     private javax.swing.JSpinner comodidad_modObjetos;
     private javax.swing.JPanel crearObjetos;
     private javax.swing.JPanel crearPersona;
@@ -1825,7 +1888,6 @@ ArrayList<Objeto> objetos = new ArrayList();
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane10;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
