@@ -52,7 +52,7 @@ public class General extends Persona{
 
     @Override
     public String toString() {
-        return "General{" + "ocupacion=" + ocupacion + ", horario=" + horario + ", semanas=" + semanas + ", sueldo=" + sueldo + '}';
+        return super.toString()+"General{" + "ocupacion=" + ocupacion + ", horario=" + horario + ", semanas=" + semanas + ", sueldo=" + sueldo + '}';
     }
     
     
