@@ -1574,6 +1574,7 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_fem_agregarPersonaActionPerformed
 
     private void agregarPersona_crearPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarPersona_crearPersonaMouseClicked
+        try{
         Persona persona;
         String rol = "Gerente";
         if("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
@@ -1611,17 +1612,15 @@ public class Tiendita extends javax.swing.JFrame {
         cb_personaIngreso_crearObjetos.setModel(modelPersonas);
         personaIngreso_modObjetos.setModel(modelPersonas);
         
-        DefaultTableModel listObjeto = (DefaultTableModel)tablePersonas.getModel();
+        
+        
+        DefaultTableModel listPersona = (DefaultTableModel)tablePersonas.getModel();
         Object [] row = {persona.getNombre(),rol};
-        listObjeto.addRow(row);
-        tablePersonas.setModel(listObjeto);
-//        if("Zapatos".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
-//            
-//        }else if("Ropa".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
-//            
-//        }else if("Objetos de Hogar".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
-//            
-//        }
+        listPersona.addRow(row);
+        tablePersonas.setModel(listPersona);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 4);
+        }
     }//GEN-LAST:event_agregarPersona_crearPersonaMouseClicked
 
     private void cb_cargo_crearPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_cargo_crearPersonaActionPerformed
@@ -1637,6 +1636,7 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_tipo_modObjetosActionPerformed
 
     private void button_agregarObjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_agregarObjetoMouseClicked
+        try{
         Objeto objeto;
         if("Zapatos".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
             objeto = new Zapato();
@@ -1671,10 +1671,20 @@ public class Tiendita extends javax.swing.JFrame {
         objeto.setMarca(tf_marca_crearObjetos.getText());
         objeto.setPersona((Persona)cb_personaIngreso_crearObjetos.getSelectedItem());
         objeto.setTamaño(Integer.parseInt(ftf_tamaño_crearObjetos.getText()));
+        objetos.add(objeto);
         
+        JOptionPane.showMessageDialog(this, "Objeto Agregada Exitosamente", "Exito", 1);
         DefaultComboBoxModel modelObjeto = (DefaultComboBoxModel)cb_objetoMod_modObjetos.getModel();
         modelObjeto.addElement(objeto);
         cb_objetoMod_modObjetos.setModel(modelObjeto);
+        
+        DefaultTableModel listObjeto = (DefaultTableModel)tableObjetos.getModel();
+        Object [] row = {objeto.getColor(),objeto.getMarca(),objeto.getPersona().getNombre()+"  "+objeto.getPersona().getId()};
+        listObjeto.addRow(row);
+        tableObjetos.setModel(listObjeto);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 4);
+        }
     }//GEN-LAST:event_button_agregarObjetoMouseClicked
 
     private void botonColor_crearObjetosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonColor_crearObjetosMouseClicked
