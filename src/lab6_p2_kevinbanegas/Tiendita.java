@@ -11,6 +11,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -260,6 +262,14 @@ public class Tiendita extends javax.swing.JFrame {
 
         jLabel10.setText("Peso en lbs");
 
+        id_crearPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        ftf_edad_crearPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        altura_crearPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        peso_crearPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         cb_tipoPersona_crearPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Persona General" }));
 
         buttonGroup4.add(soltero_crearPersona);
@@ -287,6 +297,8 @@ public class Tiendita extends javax.swing.JFrame {
         jLabel49.setText("Sueldo:");
 
         cb_horario_crearPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diurno", "Matutino" }));
+
+        tiempo_crearPersona.setModel(new javax.swing.SpinnerNumberModel(1, 1, 1000, 1));
 
         jLabel50.setText("Semanas");
 
@@ -535,6 +547,10 @@ public class Tiendita extends javax.swing.JFrame {
         ta_descripcion_crearObjetos.setRows(5);
         jScrollPane1.setViewportView(ta_descripcion_crearObjetos);
 
+        ftf_tamaño_crearObjetos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        ftf_calidad_crearObjetos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         jLabel21.setText("Talla:");
 
         jLabel22.setText("Descripcion suela:");
@@ -544,6 +560,8 @@ public class Tiendita extends javax.swing.JFrame {
         ta_descripcionSuela_crearObjetos.setColumns(20);
         ta_descripcionSuela_crearObjetos.setRows(5);
         jScrollPane2.setViewportView(ta_descripcionSuela_crearObjetos);
+
+        ftf_talla_crearObjetos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
         jLabel24.setText("Talla:");
 
@@ -802,6 +820,8 @@ public class Tiendita extends javax.swing.JFrame {
             }
         });
 
+        tft_peso_modPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         buttonGroup3.add(casado_modPersona);
         casado_modPersona.setText("Casado");
 
@@ -821,6 +841,8 @@ public class Tiendita extends javax.swing.JFrame {
 
         jLabel40.setText("Nombre");
 
+        ftf_id_modPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         cb_tipoPersona_modPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Persona General" }));
         cb_tipoPersona_modPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -828,9 +850,14 @@ public class Tiendita extends javax.swing.JFrame {
             }
         });
 
+        ftf_edad_modPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        ftf_altura_modPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         buttonGroup3.add(soltero_modPersona);
         soltero_modPersona.setText("Soltero");
 
+        ftf_sueldo_modPersona.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         ftf_sueldo_modPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftf_sueldo_modPersonaActionPerformed(evt);
@@ -865,6 +892,8 @@ public class Tiendita extends javax.swing.JFrame {
         jLabel60.setText("Sueldo:");
 
         cb_horario__modPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diurno", "Matutino" }));
+
+        tiempoTrabajado__modPersona.setModel(new javax.swing.SpinnerNumberModel(1, 1, 1000, 1));
 
         jLabel61.setText("Semanas");
 
@@ -1081,6 +1110,8 @@ public class Tiendita extends javax.swing.JFrame {
 
         jLabel67.setText("Descripción: ");
 
+        ftf_tamaño_modObjetos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         jLabel68.setText("Instrucciones: ");
 
         jLabel69.setText("Garantía");
@@ -1088,6 +1119,8 @@ public class Tiendita extends javax.swing.JFrame {
         spin_garantia_crearObjetos.setModel(new javax.swing.SpinnerNumberModel(6, 6, 24, 6));
 
         jLabel70.setText("Meses");
+
+        ftf_calidad_modObjetos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
         jLabel71.setText("Tipo de Objetos");
 
@@ -1350,6 +1383,12 @@ public class Tiendita extends javax.swing.JFrame {
 
         jTabbedPane10.addTab("Modificar Objeto", modificarObjeto);
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Personas");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Gerente");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Persona General");
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane9.setViewportView(jTree1);
 
         javax.swing.GroupLayout jerarquiaPersonasLayout = new javax.swing.GroupLayout(jerarquiaPersonas);
@@ -1371,6 +1410,14 @@ public class Tiendita extends javax.swing.JFrame {
 
         jTabbedPane10.addTab("Jerarquía de Personas", jerarquiaPersonas);
 
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Objetos");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Zapatos");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ropa");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Objetos de Hogar");
+        treeNode1.add(treeNode2);
+        jTree2.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane10.setViewportView(jTree2);
 
         javax.swing.GroupLayout jerarquiaObjetosLayout = new javax.swing.GroupLayout(jerarquiaObjetos);
@@ -1618,6 +1665,21 @@ public class Tiendita extends javax.swing.JFrame {
         Object [] row = {persona.getNombre(),rol};
         listPersona.addRow(row);
         tablePersonas.setModel(listPersona);
+        
+        int numNodo;
+        DefaultTreeModel objetoTree = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode)objetoTree.getRoot();
+        if("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
+            numNodo = 0;
+        }else{
+            numNodo = 1;
+        }
+        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)objetoTree.getChild(raiz1, numNodo);
+        DefaultMutableTreeNode agregar = new DefaultMutableTreeNode(persona);
+        nodo.add(agregar);
+        numNodo = 0;
+        objetoTree.reload();
+        
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 0);
         }
@@ -1638,13 +1700,13 @@ public class Tiendita extends javax.swing.JFrame {
     private void button_agregarObjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_agregarObjetoMouseClicked
         try{
         Objeto objeto;
-        if("Zapatos".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
+        if("Zapatos".equals(cb_tipoObjetos.getSelectedItem().toString())){
             objeto = new Zapato();
             ((Zapato)(objeto)).setTalla(ftf_talla_crearObjetos.getText());
             ((Zapato)(objeto)).setDescSuela(ta_descripcionSuela_crearObjetos.getText());
             ((Zapato)(objeto)).setComodidad(Integer.parseInt(comodidad_crearObjeto.getValue().toString()));
             
-        }else if("Ropa".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
+        }else if("Ropa".equals(cb_tipoObjetos.getSelectedItem().toString())){
             objeto = new Ropa();
             if(s_crearObjetos.isSelected()){
                 ((Ropa)(objeto)).setTalla(s_crearObjetos.getText());
@@ -1682,6 +1744,22 @@ public class Tiendita extends javax.swing.JFrame {
         Object [] row = {objeto.getColor(),objeto.getMarca(),objeto.getPersona().getNombre()+"  "+objeto.getPersona().getId()};
         listObjeto.addRow(row);
         tableObjetos.setModel(listObjeto);
+        
+        int numNodo;
+        DefaultTreeModel objetoTree = (DefaultTreeModel)jTree2.getModel();
+        DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode)objetoTree.getRoot();
+        if("Zapatos".equals(cb_tipoObjetos.getSelectedItem().toString())){
+            numNodo = 0;
+        }else if("Ropa".equals(cb_tipoObjetos.getSelectedItem().toString())){
+            numNodo= 1;
+        }else{
+            numNodo = 2;
+        }
+        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)objetoTree.getChild(raiz1, numNodo);
+        DefaultMutableTreeNode agregar = new DefaultMutableTreeNode(objeto);
+        nodo.add(agregar);
+        numNodo = 0;
+        objetoTree.reload();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 0);
         }
