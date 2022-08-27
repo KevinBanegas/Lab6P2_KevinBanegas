@@ -1822,6 +1822,10 @@ public class Tiendita extends javax.swing.JFrame {
             cb_personaIngreso_crearObjetos.setModel(newModel);
             cb_select_modPersona.setModel(newModel);
             personaIngreso_modObjetos.setModel(newModel);
+            DefaultTableModel tablemodel = (DefaultTableModel)tablePersonas.getModel();
+            
+            tablemodel.removeRow(tablePersonas.getSelectedRow());
+            tablePersonas.setModel(tablemodel);
         }
 
     }//GEN-LAST:event_elim_personasMouseClicked
