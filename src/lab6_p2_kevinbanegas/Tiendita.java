@@ -1619,7 +1619,7 @@ public class Tiendita extends javax.swing.JFrame {
         listPersona.addRow(row);
         tablePersonas.setModel(listPersona);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 4);
+            JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 0);
         }
     }//GEN-LAST:event_agregarPersona_crearPersonaMouseClicked
 
@@ -1683,7 +1683,7 @@ public class Tiendita extends javax.swing.JFrame {
         listObjeto.addRow(row);
         tableObjetos.setModel(listObjeto);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 4);
+            JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 0);
         }
     }//GEN-LAST:event_button_agregarObjetoMouseClicked
 
