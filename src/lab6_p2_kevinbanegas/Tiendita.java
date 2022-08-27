@@ -25,9 +25,7 @@ public class Tiendita extends javax.swing.JFrame {
      */
     public Tiendita() {
         initComponents();
-        
-        
-        
+
     }
 
     /**
@@ -1471,6 +1469,11 @@ public class Tiendita extends javax.swing.JFrame {
         jLabel85.setText("Lista Personas");
 
         elim_personas.setText("ELIMINAR");
+        elim_personas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                elim_personasMouseClicked(evt);
+            }
+        });
 
         jLabel88.setText("Seleccione la persona que desea eliminar, luego haga click en ELIMINAR: ");
 
@@ -1621,66 +1624,64 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_fem_agregarPersonaActionPerformed
 
     private void agregarPersona_crearPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarPersona_crearPersonaMouseClicked
-        try{
-        Persona persona;
-        String rol = "Gerente";
-        if("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
-            persona = new Gerente();
-            ((Gerente)(persona)).setUsuario(tf_usuario_crearPersona.getText());
-            ((Gerente)(persona)).setContra(tf_contra_crearPersona.getText());
-            ((Gerente)(persona)).setCargo(cb_cargo_crearPersona.getSelectedItem().toString());
-        }else{
-            persona = new General();
-            ((General)(persona)).setOcupacion(ocupacion_crearPersona.getText());
-            ((General)(persona)).setHorario(cb_horario_crearPersona.getSelectedItem().toString());
-            ((General)(persona)).setSemanas(Integer.parseInt(tiempo_crearPersona.getValue().toString()));
-            rol = "Persona General";
-        }
-        persona.setAltura(Integer.parseInt(altura_crearPersona.getText()));
-        if(soltero_crearPersona.isSelected()){
-            persona.setCivil(soltero_crearPersona.getText());
-        }else{
-            persona.setCivil(casado_crearPersona.getText());
-        }
-        persona.setEdad(Integer.parseInt(ftf_edad_crearPersona.getText()));
-        persona.setId(Integer.parseInt(id_crearPersona.getText()));
-        persona.setNombre(tf_nombre_crearPersona.getText());
-        persona.setPeso(Integer.parseInt(peso_crearPersona.getText()));
-        if(masc_agregarPersona.isSelected()){
-            persona.setSexo(masc_agregarPersona.getText());
-        }else{
-            persona.setSexo(fem_agregarPersona.getText());
-        }
-        personas.add(persona);
-        JOptionPane.showMessageDialog(this, "Persona Agregada Exitosamente", "Exito", 1);
-        DefaultComboBoxModel modelPersonas = (DefaultComboBoxModel)cb_select_modPersona.getModel();
-        modelPersonas.addElement(persona);
-        cb_select_modPersona.setModel(modelPersonas);
-        cb_personaIngreso_crearObjetos.setModel(modelPersonas);
-        personaIngreso_modObjetos.setModel(modelPersonas);
-        
-        
-        
-        DefaultTableModel listPersona = (DefaultTableModel)tablePersonas.getModel();
-        Object [] row = {persona.getNombre(),rol};
-        listPersona.addRow(row);
-        tablePersonas.setModel(listPersona);
-        
-        int numNodo;
-        DefaultTreeModel objetoTree = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode)objetoTree.getRoot();
-        if("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())){
+        try {
+            Persona persona;
+            String rol = "Gerente";
+            if ("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())) {
+                persona = new Gerente();
+                ((Gerente) (persona)).setUsuario(tf_usuario_crearPersona.getText());
+                ((Gerente) (persona)).setContra(tf_contra_crearPersona.getText());
+                ((Gerente) (persona)).setCargo(cb_cargo_crearPersona.getSelectedItem().toString());
+            } else {
+                persona = new General();
+                ((General) (persona)).setOcupacion(ocupacion_crearPersona.getText());
+                ((General) (persona)).setHorario(cb_horario_crearPersona.getSelectedItem().toString());
+                ((General) (persona)).setSemanas(Integer.parseInt(tiempo_crearPersona.getValue().toString()));
+                rol = "Persona General";
+            }
+            persona.setAltura(Integer.parseInt(altura_crearPersona.getText()));
+            if (soltero_crearPersona.isSelected()) {
+                persona.setCivil(soltero_crearPersona.getText());
+            } else {
+                persona.setCivil(casado_crearPersona.getText());
+            }
+            persona.setEdad(Integer.parseInt(ftf_edad_crearPersona.getText()));
+            persona.setId(Integer.parseInt(id_crearPersona.getText()));
+            persona.setNombre(tf_nombre_crearPersona.getText());
+            persona.setPeso(Integer.parseInt(peso_crearPersona.getText()));
+            if (masc_agregarPersona.isSelected()) {
+                persona.setSexo(masc_agregarPersona.getText());
+            } else {
+                persona.setSexo(fem_agregarPersona.getText());
+            }
+            personas.add(persona);
+            JOptionPane.showMessageDialog(this, "Persona Agregada Exitosamente", "Exito", 1);
+            DefaultComboBoxModel modelPersonas = (DefaultComboBoxModel) cb_select_modPersona.getModel();
+            modelPersonas.addElement(persona);
+            cb_select_modPersona.setModel(modelPersonas);
+            cb_personaIngreso_crearObjetos.setModel(modelPersonas);
+            personaIngreso_modObjetos.setModel(modelPersonas);
+
+            DefaultTableModel listPersona = (DefaultTableModel) tablePersonas.getModel();
+            Object[] row = {persona.getNombre(), rol};
+            listPersona.addRow(row);
+            tablePersonas.setModel(listPersona);
+
+            int numNodo;
+            DefaultTreeModel objetoTree = (DefaultTreeModel) jTree1.getModel();
+            DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode) objetoTree.getRoot();
+            if ("Gerente".equals(cb_tipoPersona_crearPersona.getSelectedItem().toString())) {
+                numNodo = 0;
+            } else {
+                numNodo = 1;
+            }
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) objetoTree.getChild(raiz1, numNodo);
+            DefaultMutableTreeNode agregar = new DefaultMutableTreeNode(persona);
+            nodo.add(agregar);
             numNodo = 0;
-        }else{
-            numNodo = 1;
-        }
-        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)objetoTree.getChild(raiz1, numNodo);
-        DefaultMutableTreeNode agregar = new DefaultMutableTreeNode(persona);
-        nodo.add(agregar);
-        numNodo = 0;
-        objetoTree.reload();
-        
-        }catch(Exception e){
+            objetoTree.reload();
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 0);
         }
     }//GEN-LAST:event_agregarPersona_crearPersonaMouseClicked
@@ -1690,7 +1691,7 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_cargo_crearPersonaActionPerformed
 
     private void cb_tipoPersona_modPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tipoPersona_modPersonaActionPerformed
-        
+
     }//GEN-LAST:event_cb_tipoPersona_modPersonaActionPerformed
 
     private void cb_tipo_modObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tipo_modObjetosActionPerformed
@@ -1698,69 +1699,69 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_tipo_modObjetosActionPerformed
 
     private void button_agregarObjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_agregarObjetoMouseClicked
-        try{
-        Objeto objeto;
-        if("Zapatos".equals(cb_tipoObjetos.getSelectedItem().toString())){
-            objeto = new Zapato();
-            ((Zapato)(objeto)).setTalla(ftf_talla_crearObjetos.getText());
-            ((Zapato)(objeto)).setDescSuela(ta_descripcionSuela_crearObjetos.getText());
-            ((Zapato)(objeto)).setComodidad(Integer.parseInt(comodidad_crearObjeto.getValue().toString()));
-            
-        }else if("Ropa".equals(cb_tipoObjetos.getSelectedItem().toString())){
-            objeto = new Ropa();
-            if(s_crearObjetos.isSelected()){
-                ((Ropa)(objeto)).setTalla(s_crearObjetos.getText());
-            }else if(m_crearObjetos.isSelected()){
-                ((Ropa)(objeto)).setTalla(m_crearObjetos.getText());
-            }else if(l_crearObjetos.isSelected()){
-                ((Ropa)(objeto)).setTalla(l_crearObjetos.getText());
-            }else{
-                ((Ropa)(objeto)).setTalla(xl_crearObjetos.getText());
+        try {
+            Objeto objeto;
+            if ("Zapatos".equals(cb_tipoObjetos.getSelectedItem().toString())) {
+                objeto = new Zapato();
+                ((Zapato) (objeto)).setTalla(ftf_talla_crearObjetos.getText());
+                ((Zapato) (objeto)).setDescSuela(ta_descripcionSuela_crearObjetos.getText());
+                ((Zapato) (objeto)).setComodidad(Integer.parseInt(comodidad_crearObjeto.getValue().toString()));
+
+            } else if ("Ropa".equals(cb_tipoObjetos.getSelectedItem().toString())) {
+                objeto = new Ropa();
+                if (s_crearObjetos.isSelected()) {
+                    ((Ropa) (objeto)).setTalla(s_crearObjetos.getText());
+                } else if (m_crearObjetos.isSelected()) {
+                    ((Ropa) (objeto)).setTalla(m_crearObjetos.getText());
+                } else if (l_crearObjetos.isSelected()) {
+                    ((Ropa) (objeto)).setTalla(l_crearObjetos.getText());
+                } else {
+                    ((Ropa) (objeto)).setTalla(xl_crearObjetos.getText());
+                }
+
+                ((Ropa) (objeto)).setPais(tf_paisElab_crearObjetos.getText());
+                ((Ropa) (objeto)).setTela(tf_tipoTela_crearObjetos.getText());
+            } else {
+                objeto = new ObjetoHogar();
+                ((ObjetoHogar) (objeto)).setDesc(descripcion_hogar_crearObjetos.getText());
+                ((ObjetoHogar) (objeto)).setInstr(instrucciones_hogar_crearObjetos.getText());
+                ((ObjetoHogar) (objeto)).setGarantia(Integer.parseInt(spin_garantia_crearObjetos.getValue().toString()));
             }
-            
-            ((Ropa)(objeto)).setPais(tf_paisElab_crearObjetos.getText());
-            ((Ropa)(objeto)).setTela(tf_tipoTela_crearObjetos.getText());
-        }else{
-            objeto = new ObjetoHogar();
-            ((ObjetoHogar)(objeto)).setDesc(descripcion_hogar_crearObjetos.getText());
-            ((ObjetoHogar)(objeto)).setInstr(instrucciones_hogar_crearObjetos.getText());
-            ((ObjetoHogar)(objeto)).setGarantia(Integer.parseInt(spin_garantia_crearObjetos.getValue().toString()));
-        }
-        
-        objeto.setCalidad(ftf_calidad_crearObjetos.getText());
-        objeto.setColor(botonColor_crearObjetos.getBackground());
-        objeto.setDescripcion(ta_descripcion_crearObjetos.getText());
-        objeto.setMarca(tf_marca_crearObjetos.getText());
-        objeto.setPersona((Persona)cb_personaIngreso_crearObjetos.getSelectedItem());
-        objeto.setTamaño(Integer.parseInt(ftf_tamaño_crearObjetos.getText()));
-        objetos.add(objeto);
-        
-        JOptionPane.showMessageDialog(this, "Objeto Agregada Exitosamente", "Exito", 1);
-        DefaultComboBoxModel modelObjeto = (DefaultComboBoxModel)cb_objetoMod_modObjetos.getModel();
-        modelObjeto.addElement(objeto);
-        cb_objetoMod_modObjetos.setModel(modelObjeto);
-        
-        DefaultTableModel listObjeto = (DefaultTableModel)tableObjetos.getModel();
-        Object [] row = {objeto.getColor(),objeto.getMarca(),objeto.getPersona().getNombre()+"  "+objeto.getPersona().getId()};
-        listObjeto.addRow(row);
-        tableObjetos.setModel(listObjeto);
-        
-        int numNodo;
-        DefaultTreeModel objetoTree = (DefaultTreeModel)jTree2.getModel();
-        DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode)objetoTree.getRoot();
-        if("Zapatos".equals(cb_tipoObjetos.getSelectedItem().toString())){
+
+            objeto.setCalidad(ftf_calidad_crearObjetos.getText());
+            objeto.setColor(botonColor_crearObjetos.getBackground());
+            objeto.setDescripcion(ta_descripcion_crearObjetos.getText());
+            objeto.setMarca(tf_marca_crearObjetos.getText());
+            objeto.setPersona((Persona) cb_personaIngreso_crearObjetos.getSelectedItem());
+            objeto.setTamaño(Integer.parseInt(ftf_tamaño_crearObjetos.getText()));
+            objetos.add(objeto);
+
+            JOptionPane.showMessageDialog(this, "Objeto Agregada Exitosamente", "Exito", 1);
+            DefaultComboBoxModel modelObjeto = (DefaultComboBoxModel) cb_objetoMod_modObjetos.getModel();
+            modelObjeto.addElement(objeto);
+            cb_objetoMod_modObjetos.setModel(modelObjeto);
+
+            DefaultTableModel listObjeto = (DefaultTableModel) tableObjetos.getModel();
+            Object[] row = {objeto.getColor(), objeto.getMarca(), objeto.getPersona().getNombre() + "  " + objeto.getPersona().getId()};
+            listObjeto.addRow(row);
+            tableObjetos.setModel(listObjeto);
+
+            int numNodo;
+            DefaultTreeModel objetoTree = (DefaultTreeModel) jTree2.getModel();
+            DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode) objetoTree.getRoot();
+            if ("Zapatos".equals(cb_tipoObjetos.getSelectedItem().toString())) {
+                numNodo = 0;
+            } else if ("Ropa".equals(cb_tipoObjetos.getSelectedItem().toString())) {
+                numNodo = 1;
+            } else {
+                numNodo = 2;
+            }
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) objetoTree.getChild(raiz1, numNodo);
+            DefaultMutableTreeNode agregar = new DefaultMutableTreeNode(objeto);
+            nodo.add(agregar);
             numNodo = 0;
-        }else if("Ropa".equals(cb_tipoObjetos.getSelectedItem().toString())){
-            numNodo= 1;
-        }else{
-            numNodo = 2;
-        }
-        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)objetoTree.getChild(raiz1, numNodo);
-        DefaultMutableTreeNode agregar = new DefaultMutableTreeNode(objeto);
-        nodo.add(agregar);
-        numNodo = 0;
-        objetoTree.reload();
-        }catch(Exception e){
+            objetoTree.reload();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ingreso un dato invalido", "ERROR", 0);
         }
     }//GEN-LAST:event_button_agregarObjetoMouseClicked
@@ -1770,31 +1771,60 @@ public class Tiendita extends javax.swing.JFrame {
     }//GEN-LAST:event_botonColor_crearObjetosMouseClicked
 
     private void cb_select_modPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_select_modPersonaActionPerformed
-        if(cb_select_modPersona.getSelectedItem() instanceof Gerente){
-            tf_usuario_modPersona.setText(((Gerente)(cb_select_modPersona.getSelectedItem())).getUsuario());
-            tf_contra_modPersona.setText(((Gerente)(cb_select_modPersona.getSelectedItem())).getContra());
-            String temp = (((Gerente)(cb_select_modPersona.getSelectedItem())).getCargo());
-            if ("Gerente de Planta".equals(temp)){
+        if (cb_select_modPersona.getSelectedItem() instanceof Gerente) {
+            tf_usuario_modPersona.setText(((Gerente) (cb_select_modPersona.getSelectedItem())).getUsuario());
+            tf_contra_modPersona.setText(((Gerente) (cb_select_modPersona.getSelectedItem())).getContra());
+            String temp = (((Gerente) (cb_select_modPersona.getSelectedItem())).getCargo());
+            if ("Gerente de Planta".equals(temp)) {
                 cb_cargo_modPersona.setSelectedIndex(0);
-            }else{
+            } else {
                 cb_cargo_modPersona.setSelectedIndex(1);
             }
-            
-        }else{
-            tf_ocupacion_modPersona.setText(((General)(cb_select_modPersona.getSelectedItem())).getOcupacion());
-            tiempoTrabajado__modPersona.setValue(((General)(cb_select_modPersona.getSelectedItem())).getSemanas());
-            ftf_sueldo_modPersona.setText(""+(((General)(cb_select_modPersona.getSelectedItem())).getSueldo()));
+
+        } else {
+            tf_ocupacion_modPersona.setText(((General) (cb_select_modPersona.getSelectedItem())).getOcupacion());
+            tiempoTrabajado__modPersona.setValue(((General) (cb_select_modPersona.getSelectedItem())).getSemanas());
+            ftf_sueldo_modPersona.setText("" + (((General) (cb_select_modPersona.getSelectedItem())).getSueldo()));
         }
-       ftf_id_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getId()));
-       tf_nombre_modPersona.setText(((Persona)(cb_select_modPersona.getSelectedItem())).getNombre());
-       ftf_edad_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getEdad()));
-       ftf_altura_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getAltura()));
-       tft_peso_modPersona.setText(Integer.toString(((Persona)(cb_select_modPersona.getSelectedItem())).getPeso()));
-       soltero_modPersona.setSelected(true);
-       masc_modPersona.setSelected(true);
-       
-               
+        ftf_id_modPersona.setText(Integer.toString(((Persona) (cb_select_modPersona.getSelectedItem())).getId()));
+        tf_nombre_modPersona.setText(((Persona) (cb_select_modPersona.getSelectedItem())).getNombre());
+        ftf_edad_modPersona.setText(Integer.toString(((Persona) (cb_select_modPersona.getSelectedItem())).getEdad()));
+        ftf_altura_modPersona.setText(Integer.toString(((Persona) (cb_select_modPersona.getSelectedItem())).getAltura()));
+        tft_peso_modPersona.setText(Integer.toString(((Persona) (cb_select_modPersona.getSelectedItem())).getPeso()));
+        soltero_modPersona.setSelected(true);
+        masc_modPersona.setSelected(true);
+
+
     }//GEN-LAST:event_cb_select_modPersonaActionPerformed
+
+    private void elim_personasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elim_personasMouseClicked
+        if (!tablePersonas.getSelectionModel().isSelectionEmpty()) {
+            int numNodo;
+            DefaultTreeModel objetoTree = (DefaultTreeModel) jTree1.getModel();
+            DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode) objetoTree.getRoot();
+            if (personas.get(tablePersonas.getSelectedRow()) instanceof Gerente) {
+                numNodo = 0;
+            } else {
+                numNodo = 1;
+            }
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) objetoTree.getChild(raiz1, numNodo);
+            DefaultMutableTreeNode nodosub = (DefaultMutableTreeNode) objetoTree.getChild(nodo, tablePersonas.getSelectedRow());
+            nodo.remove(nodosub);
+            numNodo = 0;
+            objetoTree.reload();
+            
+            personas.remove(tablePersonas.getSelectedRow());
+            DefaultComboBoxModel newModel = new DefaultComboBoxModel();
+            
+            for (Persona persona : personas) {
+                newModel.addElement(persona);
+            }
+            cb_personaIngreso_crearObjetos.setModel(newModel);
+            cb_select_modPersona.setModel(newModel);
+            personaIngreso_modObjetos.setModel(newModel);
+        }
+
+    }//GEN-LAST:event_elim_personasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1830,8 +1860,8 @@ public class Tiendita extends javax.swing.JFrame {
             }
         });
     }
-ArrayList<Persona> personas = new ArrayList();
-ArrayList<Objeto> objetos = new ArrayList();
+    ArrayList<Persona> personas = new ArrayList();
+    ArrayList<Objeto> objetos = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarPersona_crearPersona;
     private javax.swing.JFormattedTextField altura_crearPersona;
