@@ -1541,6 +1541,11 @@ public class Tiendita extends javax.swing.JFrame {
         jLabel87.setText("Seleccione el objeto que desea eliminar, luego haga click en ELIMINAR: ");
 
         elimObjeto.setText("ELIMINAR");
+        elimObjeto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                elimObjetoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout listaObjetosLayout = new javax.swing.GroupLayout(listaObjetos);
         listaObjetos.setLayout(listaObjetosLayout);
@@ -1829,6 +1834,38 @@ public class Tiendita extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_elim_personasMouseClicked
+
+    private void elimObjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimObjetoMouseClicked
+        if (!tableObjetos.getSelectionModel().isSelectionEmpty()) {
+            int numNodo;
+            DefaultTreeModel objetoTree = (DefaultTreeModel) jTree2.getModel();
+            DefaultMutableTreeNode raiz1 = (DefaultMutableTreeNode) objetoTree.getRoot();
+            if (objetos.get(tableObjetos.getSelectedRow()) instanceof Zapato) {
+                numNodo = 0;
+            } else if(objetos.get(tableObjetos.getSelectedRow()) instanceof Ropa){
+                numNodo = 1;
+            }else {
+                numNodo = 2;
+            }
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) objetoTree.getChild(raiz1, numNodo);
+            DefaultMutableTreeNode nodosub = (DefaultMutableTreeNode) objetoTree.getChild(nodo, tableObjetos.getSelectedRow());
+            nodo.remove(nodosub);
+            numNodo = 0;
+            objetoTree.reload();
+            
+            objetos.remove(tableObjetos.getSelectedRow());
+            DefaultComboBoxModel newModel = new DefaultComboBoxModel();
+            
+            for (Objeto objeto : objetos) {
+                newModel.addElement(objeto);
+            }
+            cb_objetoMod_modObjetos.setModel(newModel);
+            DefaultTableModel tablemodel = (DefaultTableModel)tableObjetos.getModel();
+            
+            tablemodel.removeRow(tableObjetos.getSelectedRow());
+            tableObjetos.setModel(tablemodel);
+        }
+    }//GEN-LAST:event_elimObjetoMouseClicked
 
     /**
      * @param args the command line arguments
